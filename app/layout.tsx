@@ -1,5 +1,6 @@
 "use client";
 
+import { NavHeader } from "@/components/nav-header";
 import "./globals.css";
 
 
@@ -11,7 +12,8 @@ export default function RootLayout({
 }>) {
   return (
 		<html lang="en">
-			<body className={`antialiased`}>
+      <body className={`antialiased`}>
+        <NavHeader/>
 				{children}
 			</body>
 		</html>
