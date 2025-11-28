@@ -1,0 +1,15 @@
+{
+    "accountAssociation": {
+        "type": "jwt",
+        "jwt": {
+            "authUrl":"http:localhost:5000/api/auth"
+        }
+    },
+    "frame": {
+        "type":"redirect",
+        "url":"http:localhost:5000"
+    },
+    "baseBuilder": {
+        "allowedAddresses":["0x1234567890abcdef1234567890abcdef12345678"]
+    }
+}
