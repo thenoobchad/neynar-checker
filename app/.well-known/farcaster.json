@@ -1,35 +1,22 @@
 {
+	"frame": {
+		"name": "Neynar checker",
+		"version": "1",
+		"iconUrl": "https://neynar-checker.vercel.app/icon.png",
+		"homeUrl": "https://neynar-checker.vercel.app",
+		"imageUrl": "https://neynar-checker.vercel.app/image.png",
+		"buttonTitle": "Check Score",
+		"splashImageUrl": "https://neynar-checker.vercel.app/splash.png",
+		"splashBackgroundColor": "#080508",
+		"webhookUrl": "https://neynar-checker.vercel.app/api/webhook",
+		"subtitle": "Check your neynar score",
+		"description": "Neynar score reveals the quality of user account",
+		"primaryCategory": "utility",
+		"ogTitle": "Neynar Checker"
+	},
 	"accountAssociation": {
-		
 		"header": "",
 		"payload": "",
 		"signature": ""
-	},
-	"baseBuilder": {
-		"ownerAddress": "0x" 
-	},
-	"miniapp": {
-		"version": "1",
-		"name": "Neynar checker",
-		"homeUrl": "https://ex.co",
-		"iconUrl": "https://ex.co/i.png",
-		"splashImageUrl": "https://ex.co/l.png",
-		"splashBackgroundColor": "#000000",
-		"webhookUrl": "https://ex.co/api/webhook",
-		"subtitle": "Fast, fun, social",
-		"description": "A fast, fun way to challenge friends in real time.",
-		"screenshotUrls": [
-			"https://ex.co/s1.png",
-			"https://ex.co/s2.png",
-			"https://ex.co/s3.png"
-		],
-		"primaryCategory": "social",
-		"tags": ["example", "miniapp", "baseapp"],
-		"heroImageUrl": "https://ex.co/og.png",
-		"tagline": "Play instantly",
-		"ogTitle": "Example Mini App",
-		"ogDescription": "Challenge friends in real time.",
-		"ogImageUrl": "https://ex.co/og.png",
-		"noindex": true
 	}
 }
