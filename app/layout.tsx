@@ -2,8 +2,20 @@
 
 import { NavHeader } from "@/components/nav-header";
 import "./globals.css";
+import localFont from "next/font/local"
 
-
+    const myCustomFont = localFont({
+      src: [
+        {
+          path: '../public/fonts/dm-sans.ttf',
+          weight: '400',
+          style: 'normal',
+        },
+       
+      ],
+      variable: '--font-my-custom', // Optional: for CSS variable usage
+      display: 'swap', // Optional: controls font loading behavior
+    });
 
 
 export default function RootLayout({
@@ -13,7 +25,7 @@ export default function RootLayout({
 }>) {
   return (
 		<html lang="en">
-      <body className={`antialiased min-h-screen`}>
+      <body className={`antialiased min-h-screen ${myCustomFont.className} bg-zinc-950 text-zinc-200`}>
         <NavHeader/>
 				{children}
 			</body>
