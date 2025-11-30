@@ -7,5 +7,11 @@
 		"imageUrl": "https://neynar-checker.vercel.app/icon.png",
 		"splashImageUrl": "https://neynar-checker.vercel.app/icon.png",
 		"splashBackgroundColor": "#080508"
-	}
+	},
+	"accountAssociation": {
+    "header": "eyJmaWQiOjExMTAzODEsInR5cGUiOiJjdXN0b2R5Iiwia2V5IjoiMHgwMTU5ZkRkQUVmRDEzMzcxMEI0Y2M5RjRiRTYwYzlDQ2JDMmE1NDQxIn0",
+    "payload": "eyJkb21haW4iOiJuZXluYXItY2hlY2tlci52ZXJjZWwuYXBwIn0",
+    "signature": "lRHWM/o/2JqX9MleJurIbg16r9j5X7LltHophcTL8P9trDVvHGIigCoxS+AFnkwjCNXLweIr6KoRvmFtY4MTuRs="
+  }
+
 }
