@@ -19,16 +19,16 @@ export const metadata = {
 	other: {
 		"fc:frame": JSON.stringify({
 			version: "1",
-			imageUrl: "",
+			imageUrl: "https://neynar-checker.vercel.app/preview-image.png",
 			button: {
 				title: "Start checker",
-        action: {
-          type: 'launch_frame',
-          url: '',
-          name: 'Neynar checker',
-          splashImageUrl: '',
-          splashBackgroundColor: '',
-        },
+				action: {
+					type: "launch_frame",
+					url: "neynar-checker.vercel.app",
+					name: "Neynar checker",
+					splashImageUrl: "https://neynar-checker.vercel.app/splash.png",
+					splashBackgroundColor: "",
+				},
 			},
 		}),
 	},

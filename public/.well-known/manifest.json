@@ -2,10 +2,10 @@
 	"miniapp": {
 		"version": "1",
 		"name": "Neynar Checker",
-		"iconUrl": "/image.png",
-		"homeUrl": "/",
+		"iconUrl": "https://neynar-checker.vercel.app/icon.png",
+		"homeUrl": "https://neynar-checker.vercel.app",
 		"imageUrl": "/og-image.png",
-		"splashImageUrl": "/image.png",
+		"splashImageUrl": "https://neynar-checker.vercel.app/icon.png",
 		"splashBackgroundColor": "#080508"
 	}
 }
