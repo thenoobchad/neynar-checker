@@ -1,8 +1,9 @@
-"use client";
+
 
 import { NavHeader } from "@/components/nav-header";
 import "./globals.css";
 import localFont from "next/font/local"
+import Provider from "@/components/providers";
 
     const myCustomFont = localFont({
       src: [
@@ -25,9 +26,12 @@ export default function RootLayout({
 }>) {
   return (
 		<html lang="en">
-      <body className={`antialiased min-h-screen ${myCustomFont.className} bg-zinc-950 text-zinc-200`}>
-        <NavHeader/>
-				{children}
+			<body
+				className={`antialiased min-h-screen ${myCustomFont.className} bg-zinc-950 text-zinc-200`}>
+				<Provider>
+					<NavHeader />
+					{children}
+				</Provider>
 			</body>
 		</html>
 	);

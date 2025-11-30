@@ -1,0 +1,12 @@
+{
+	"miniapp": {
+		"version": "1",
+		"name": "Naynar Checker",
+		"iconUrl": "/image.png",
+		"homeUrl": "/",
+		"imageUrl": "/og-image.png",
+		"buttonTitle": "View Info",
+		"splashImageUrl": "/splash.png",
+		"splashBackgroundColor": "#ffffff"
+	}
+}

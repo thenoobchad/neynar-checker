@@ -9,13 +9,17 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "@coinbase/onchainkit": "^1.1.2",
     "@farcaster/miniapp-sdk": "^0.2.1",
+    "@farcaster/miniapp-wagmi-connector": "^1.1.0",
     "@neynar/nodejs-sdk": "^3.97.0",
+    "@neynar/react": "^1.2.22",
+    "@pigment-css/react": "^0.0.30",
     "lucide-react": "^0.555.0",
     "next": "16.0.3",
     "react": "19.2.0",
-    "react-dom": "19.2.0"
+    "react-dom": "19.2.0",
+    "viem": "^2.40.3",
+    "wagmi": "^3.0.2"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
