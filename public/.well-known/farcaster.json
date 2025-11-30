@@ -4,7 +4,7 @@
 		"name": "Neynar Checker",
 		"iconUrl": "https://neynar-checker.vercel.app/icon.png",
 		"homeUrl": "https://neynar-checker.vercel.app",
-		"imageUrl": "/og-image.png",
+		"imageUrl": "https://neynar-checker.vercel.app/icon.png",
 		"splashImageUrl": "https://neynar-checker.vercel.app/icon.png",
 		"splashBackgroundColor": "#080508"
 	}
