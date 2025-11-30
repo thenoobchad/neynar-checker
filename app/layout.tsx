@@ -1,30 +1,45 @@
-
-
 import { NavHeader } from "@/components/nav-header";
 import "./globals.css";
-import localFont from "next/font/local"
+import localFont from "next/font/local";
 import Provider from "@/components/providers";
 
-    const myCustomFont = localFont({
-      src: [
-        {
-          path: '../public/fonts/dm-sans.ttf',
-          weight: '400',
-          style: 'normal',
-        },
-       
-      ],
-      variable: '--font-my-custom', // Optional: for CSS variable usage
-      display: 'swap', // Optional: controls font loading behavior
-    });
+const myCustomFont = localFont({
+	src: [
+		{
+			path: "../public/fonts/dm-sans.ttf",
+			weight: "400",
+			style: "normal",
+		},
+	],
+	variable: "--font-my-custom", // Optional: for CSS variable usage
+	display: "swap", // Optional: controls font loading behavior
+});
 
+export const metadata = {
+	other: {
+		"fc:frame": JSON.stringify({
+			version: "1",
+			imageUrl: "",
+			button: {
+				title: "Start checker",
+        action: {
+          type: 'launch_frame',
+          url: '',
+          name: 'Neynar checker',
+          splashImageUrl: '',
+          splashBackgroundColor: '',
+        },
+			},
+		}),
+	},
+};
 
 export default function RootLayout({
-  children,
+	children,
 }: Readonly<{
-  children: React.ReactNode;
+	children: React.ReactNode;
 }>) {
-  return (
+	return (
 		<html lang="en">
 			<body
 				className={`antialiased min-h-screen ${myCustomFont.className} bg-zinc-950 text-zinc-200`}>

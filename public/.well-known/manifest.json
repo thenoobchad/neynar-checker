@@ -1,0 +1,11 @@
+{
+	"miniapp": {
+		"version": "1",
+		"name": "Neynar Checker",
+		"iconUrl": "/image.png",
+		"homeUrl": "/",
+		"imageUrl": "/og-image.png",
+		"splashImageUrl": "/image.png",
+		"splashBackgroundColor": "#080508"
+	}
+}
