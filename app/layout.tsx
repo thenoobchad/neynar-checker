@@ -24,10 +24,10 @@ export const metadata = {
 				title: "Start checker",
 				action: {
 					type: "launch_frame",
-					url: "neynar-checker.vercel.app",
+					url: "https://neynar-checker.vercel.app",
 					name: "Neynar checker",
 					splashImageUrl: "https://neynar-checker.vercel.app/splash.png",
-					splashBackgroundColor: "",
+					splashBackgroundColor: "#080508",
 				},
 			},
 		}),
