@@ -1,7 +1,7 @@
 "use client";
 
 import { useMiniApp } from "@neynar/react";
-import Image from "next/image";
+
 import { useEffect } from "react";
 
 export default function Home() {
@@ -35,12 +35,12 @@ export default function Home() {
 				{/* USER META DATA */}
 				<div className="flex gap-4 items-center justify-center">
 					{currentUser?.pfpUrl ? (
-                        <Image
-                            height={19}
-                            width={19}
+                        <img
+                            // height={19}
+                            // width={19}
 							src={currentUser.pfpUrl}
 							alt="avatar"
-							className="rounded-full object-cover"
+							className="h-9 w-9 rounded-full object-cover"
 						/>
 					) : (
 						<div className="h-9 w-9 rounded-full bg-white" />
@@ -57,7 +57,7 @@ export default function Home() {
 			</nav>
 
 			<div className="mx-4 w-full flex flex-col justify-center items-center overflow-hidden">
-				<p className="text-xl font-semibold font-medo flex">
+				<p className="text-xl font-semibold font-medo flex flex-wrap">
 					The neynar user score reveals the quality of a users engagement on the
 					platform. it ranges from 0 - 1.
 				</p>
