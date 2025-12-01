@@ -33,7 +33,7 @@ export default function Home() {
 				</div>
 
 				{/* USER META DATA */}
-				<div className="flex gap-4 items-center justify-center">
+				<div className="flex gap-3 items-center justify-center">
 					{currentUser?.pfpUrl ? (
                         <img
                             // height={19}
@@ -59,7 +59,7 @@ export default function Home() {
 			<div className="mx-4 w-full flex flex-col justify-center items-center overflow-hidden">
 				<p className="text-xl font-semibold font-medo flex flex-wrap">
 					The neynar user score reveals the quality of a users engagement on the
-					platform. it ranges from 0 - 1.
+					platform.<br/> it ranges from 0 - 1.
 				</p>
 				{error && (
 					<p className="mt-2 text-lg bg-red-200 text-red-400 p-4 w-fit text-center" role="alert">
