@@ -11,7 +11,9 @@ export default function Provider({ children }: { children: React.ReactNode }) {
 
     return (
 			<WagmiProvider config={wagmiConfig}>
-				<MiniAppProvider>{children}</MiniAppProvider>
+			<MiniAppProvider>
+					{children}
+				</MiniAppProvider>
 			</WagmiProvider>
 		);
 }

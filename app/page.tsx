@@ -2,7 +2,14 @@
 
 import Image from "next/image"; // if you're using Next.js - remove if not
 import { useMiniApp } from "@neynar/react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useTransition } from "react";
+import { fetchNeynarScoreAndStat } from "@/lib/actions";
+
+interface StateType {
+	username: string;
+	followingCount: number;
+	followersCount: number;
+}
 
 export default function Home() {
 	// single source of truth from the SDK hook
@@ -10,8 +17,10 @@ export default function Home() {
 
 	// local UI state (used in the JSX to avoid 'declared but never used' warnings)
 	const [score, setScore] = useState<number | null>(null);
-	const [stats, setStats] = useState<Record<string, unknown> | null>(null);
+	const [stats, setStats] = useState<StateType | null>(null);
 	const [loading, setLoading] = useState(false);
+	const [isError, setIsError] = useState<string | null>(null);
+	const [isPending, startTransition] = useTransition();
 
 	// derived values from SDK context
 	const currentUser = context?.user ?? null;
@@ -28,12 +37,7 @@ export default function Home() {
 		actions?.ready();
 	}, [isSDKLoaded, actions]);
 
-	// typed backend response
-	type ScoreResponse = {
-		score: number;
-		stats: Record<string, unknown>;
-	};
-
+	
 	// example fetch function — guard SDK + user, simulate a request (replace with real SDK call)
 	const fetchScoreAndStats = async () => {
 		if (!isSDKLoaded || !currentUser?.fid) {
@@ -41,22 +45,19 @@ export default function Home() {
 			return;
 		}
 
-		setLoading(true);
-		try {
-			// Call your server API route (implement server-side SDK call there).
-			const res = await fetch(
-				`/api/neynar-score?fid=${encodeURIComponent(currentUser.fid)}`
-			);
-			if (!res.ok) throw new Error(`HTTP ${res.status}`);
-			const data = (await res.json()) as ScoreResponse;
+		startTransition(async () => {
+			const result = await fetchNeynarScoreAndStat(currentUser.fid);
 
-			setScore(data.score);
-			setStats(data.stats);
-		} catch (err) {
-			console.error(err);
-		} finally {
-			setLoading(false);
-		}
+			if (result.success && result.score && result.stats) {
+				setScore(result.score);
+				setStats(result.stats);
+				setIsError(null);
+			} else {
+				setIsError(result.error!);
+				setScore(null);
+				setStats(null);
+			}
+		});
 	};
 
 	console.log("Context:", context);
@@ -93,10 +94,16 @@ export default function Home() {
 			</nav>
 
 			<div className="mx-4 w-full flex flex-col justify-center items-center overflow-hidden">
-				<p className="text-xl font-semibold font-medo flex flex-wrap">
+				<p className="text-xl font-semibold font-medo flex flex-wrap leading-4.8">
 					The neynar user score reveals the quality of a user&apos;s engagement
 					on the platform. it ranges from 0 - 1.
 				</p>
+
+                {stats && (
+                    <div className="mt-4 text-center">
+                        <p>{stats.followersCount}</p>
+                    </div>
+                )}
 
 				{error && (
 					<p
