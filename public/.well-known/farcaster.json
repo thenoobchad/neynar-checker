@@ -6,7 +6,7 @@
 		"homeUrl": "https://neynar-checker.vercel.app",
 		"imageUrl": "https://neynar-checker.vercel.app/icon.png",
 		"splashImageUrl": "https://neynar-checker.vercel.app/icon.png",
-		"splashBackgroundColor": "#FFFFFF"
+		"splashBackgroundColor": "#0052FF"
 	},
 	"accountAssociation": {
     "header": "eyJmaWQiOjExMTAzODEsInR5cGUiOiJjdXN0b2R5Iiwia2V5IjoiMHgwMTU5ZkRkQUVmRDEzMzcxMEI0Y2M5RjRiRTYwYzlDQ2JDMmE1NDQxIn0",
