@@ -36,8 +36,8 @@ export default function Home() {
 				<div className="flex gap-4 items-center justify-center">
 					{currentUser?.pfpUrl ? (
                         <Image
-                            height={9}
-                            width={9}
+                            height={19}
+                            width={19}
 							src={currentUser.pfpUrl}
 							alt="avatar"
 							className="rounded-full object-cover"
@@ -56,13 +56,13 @@ export default function Home() {
 				</div>
 			</nav>
 
-			<div className="mx-4 w-full flex flex-col justify-center">
-				<p className="text-xl font-semibold font-medo">
+			<div className="mx-4 w-full flex flex-col justify-center items-center overflow-hidden">
+				<p className="text-xl font-semibold font-medo flex">
 					The neynar user score reveals the quality of a users engagement on the
 					platform. it ranges from 0 - 1.
 				</p>
 				{error && (
-					<p className="mt-2 text-lg bg-red-200 text-red-400 p-4 w-fit" role="alert">
+					<p className="mt-2 text-lg bg-red-200 text-red-400 p-4 w-fit text-center" role="alert">
 						{error}
 					</p>
 				)}
