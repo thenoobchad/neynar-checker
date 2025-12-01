@@ -18,7 +18,7 @@ export default function Home() {
     
 	return (
 		<main className="flex min-h-screen flex-col mx-auto max-w-4xl font-medo w-full ">
-			<nav className="py-4 flex justify-between my-3 px-4 mx-4 bg-[#0052FF] outline outline-zinc-300 rounded">
+			<nav className="py-4 flex justify-between my-3 px-4 mx-4 bg-[#0052FF] outline outline-zinc-300">
 				<div>
 					<h4 className="text-2xl font-block ">CHECKER</h4>
 				</div>
@@ -32,16 +32,19 @@ export default function Home() {
 					</div>
 				</div>
 			</nav>
+			<div className="mx-4">
+				<p className="text-xl font-semibold font-medo">
+					Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus
+					laboriosam mollitia cupiditate ipsum modi porro ab eaque dolorum.
+				</p>
+			</div>
+			<div className="flex justify-center my-10">
+				<button className="text-lg font-pixel bg-white text-zinc-700 px-5 py-3 w-2/3">
+					START HERE
+				</button>
+			</div>
 
-			<p className="text-xl font-semibold font-medo">
-				Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus
-				laboriosam mollitia cupiditate ipsum modi porro ab eaque dolorum.
-			</p>
-
-			<p className="text-lg font-pixel bg-white text-zinc-700 px-5 py-2">
-				START HERE
-            </p>
-            <UserInfo/>
+			<UserInfo />
 		</main>
 	);
 }
