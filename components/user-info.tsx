@@ -17,7 +17,8 @@ export default function UserInfo() {
 
 	return (
 		<div className="p-4 text-center">
-			<h1 className="text-2xl font-bold">Your Farcaster Info</h1>
+			<h1 className="text-4xl font-block">Your Farcaster Info</h1>
+			
 		</div>
 	);
 }

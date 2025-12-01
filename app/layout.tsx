@@ -15,6 +15,36 @@ const myCustomFont = localFont({
 	display: "swap", // Optional: controls font loading behavior
 });
 
+const BlockBlue = localFont({
+	src: "../public/fonts/BlockBlueprint.ttf",
+	variable: "--font-block-blue",
+	display: "swap",
+});
+
+const BoldPixels = localFont({
+	src: "../public/fonts/BoldPixels.otf",
+	variable: "--font-bold-pixels",
+	display: "swap",
+});
+
+const MedoReg = localFont({
+	src: "../public/fonts/MedodicaRegular.otf",
+	variable: "--font-medoreg",
+	display: "swap",
+});
+
+const Space = localFont({
+	src: "../public/fonts/SpaceGrotesk-Regular.ttf",
+	variable: "--font-space",
+	display: "swap",
+});
+
+const Qartige = localFont({
+	src: "../public/fonts/Qartige.otf",
+	variable: "--font-qartige",
+	display: "swap",
+});
+
 export const metadata = {
 	other: {
 		"fc:frame": JSON.stringify({
@@ -42,11 +72,13 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body
-				className={`antialiased min-h-screen ${myCustomFont.className} bg-zinc-950 text-zinc-200`}>
-				<Provider>
-					<NavHeader />
-					{children}
-				</Provider>
+				style={{
+					backgroundImage: "url('/background.png')",
+					backgroundSize: "cover",
+					backgroundPosition: "center",
+				}}
+				className={`antialiased min-h-screen ${BlockBlue.variable} ${BoldPixels.variable} ${MedoReg.variable} ${Space} ${Qartige.variable} bg-zinc-950 text-zinc-200`}>
+				<Provider>{children}</Provider>
 			</body>
 		</html>
 	);

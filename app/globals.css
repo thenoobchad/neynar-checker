@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --background: #080508;
+  --background: #0052FF;
   --foreground: #f1f1f1;
 }
 
@@ -24,3 +24,25 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.font-block {
+  font-family: var(--font-block-blue);
+}
+
+.font-pixel {
+  font-family: var(--font-bold-pixels);
+}
+
+.font-medo {
+  font-family: var(--font-medoreg);
+}
+
+.font-qartige {
+  font-family: var(--font-qartige);
+}
+
+.font-space {
+  font-family: var(--font-space);
+}
+
+
