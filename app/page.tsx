@@ -116,12 +116,11 @@ export default function Home() {
 				{/* USER META DATA */}
 				<div className="flex gap-3 items-center justify-center">
 					{currentUser?.pfpUrl ? (
-						<Image
+						<img
 							src={currentUser.pfpUrl}
 							alt="avatar"
-							width={36}
-							height={36}
-							className="rounded-full object-cover"
+							
+							className="rounded-full h-6 w-6 object-cover"
 						/>
 					) : (
 						<div className="h-9 w-9 rounded-full bg-white" />
@@ -145,7 +144,7 @@ export default function Home() {
 					to the network.
 				</p>
 
-				{!error && (
+				{error && (
 					<div className="w-full flex justify-center ">
 						<p
 							className=" text-lg bg-red-200 text-red-400 justify-center flex  p-4 w-fit text-center gap-2 items-center"
@@ -159,8 +158,8 @@ export default function Home() {
 				)}
 			</div>
 
-			<div className="mx-4 flex flex-col items-center justify-center mb-6 bg-white py-4 outline outline-zinc-300 text-black/70">
-				{stats && (
+			{stats && (
+				<div className="mx-4 flex flex-col items-center justify-center mb-6 bg-white py-4 outline outline-zinc-300 text-black/70">
 					<div className="text-xl font-extrabold flex gap-4 items-center">
 						<img src={stats.pfp} alt="pfp" className="h-33 w-33 rounded-full" />
 						<div>
@@ -173,8 +172,8 @@ export default function Home() {
 							</ul>
 						</div>
 					</div>
-				)}
-			</div>
+				</div>
+			)}
 
 			<div className="flex justify-center my-10">
 				<button
