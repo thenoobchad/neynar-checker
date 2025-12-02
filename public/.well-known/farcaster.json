@@ -6,7 +6,14 @@
 		"homeUrl": "https://neynar-checker.vercel.app",
 		"imageUrl": "https://neynar-checker.vercel.app/icon.png",
 		"splashImageUrl": "https://neynar-checker.vercel.app/icon.png",
-		"splashBackgroundColor": "#0052FF"
+		"splashBackgroundColor": "#0052FF",
+		"subtitle":"Checker",
+		"description":"neynar score checker",
+		"primaryCategory": "utility",
+		"heroImageUrl":"https://neynar-checker.vercel.app/preview-image.png",
+		"ogTitle":"neynar checker",
+		"ogDescription":"Minimalistic checker for neynar score",
+		"ogImageUrl":"https://neynar-checker.vercel.app/preview-image.png"
 	},
 	"accountAssociation": {
     "header": "eyJmaWQiOjExMTAzODEsInR5cGUiOiJjdXN0b2R5Iiwia2V5IjoiMHgwMTU5ZkRkQUVmRDEzMzcxMEI0Y2M5RjRiRTYwYzlDQ2JDMmE1NDQxIn0",

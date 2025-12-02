@@ -7,33 +7,21 @@ const neynarClient = new NeynarAPIClient({
     apiKey: process.env.NEYNAR_API_KEY!,
 })
 
-export async function fetchNeynarScoreAndStat(fid: number) {
-    if (!fid) {
-        throw new Error("Fid is required")
-    }
+export async function fetchNeynarScoreAndStat() {
+    // if (!fid) {
+    //     throw new Error("Fid is required")
+    // }
 
     try {
-        const userData = await neynarClient.fetchBulkUsers({ fids: [fid] })
+        const userData = await neynarClient.fetchBulkUsers({ fids: [1120583] })
         const user = userData.users[0]
-
+        console.log("This is the",user.profile)
         if(!user) {
             throw new Error("User not found")
         }
 
-        const scoreResponse = await fetch(`https://api.neynar.com/v2/farcaster/user/score/${user.fid}`, {
-            method: 'GET',
-            headers: {
-                'api_key': process.env.NEYNAR_API_KEY!
-            }
-        })
+        const scoreData = { score: user.score }
 
-        let scoreData = { score: 0.5 }
-        if (scoreResponse.ok) {
-            const scoreJson = await scoreResponse.json()
-            scoreData = scoreJson || { score: 0.5 }
-        } else {
-            console.error(`Failed to fetch score: ${scoreResponse.status} ${scoreResponse.statusText}`)
-        }
 
         return {
             success: true,

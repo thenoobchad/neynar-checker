@@ -4,6 +4,7 @@ import Image from "next/image"; // if you're using Next.js - remove if not
 import { useMiniApp } from "@neynar/react";
 import { useEffect, useState, useTransition } from "react";
 import { fetchNeynarScoreAndStat } from "@/lib/actions";
+import { AlertCircle } from "lucide-react";
 
 interface StateType {
 	username: string;
@@ -18,7 +19,7 @@ export default function Home() {
 	// local UI state (used in the JSX to avoid 'declared but never used' warnings)
 	const [score, setScore] = useState<number | null>(null);
 	const [stats, setStats] = useState<StateType | null>(null);
-	const [loading, setLoading] = useState(false);
+
 	const [isError, setIsError] = useState<string | null>(null);
 	const [isPending, startTransition] = useTransition();
 
@@ -40,13 +41,14 @@ export default function Home() {
 	
 	// example fetch function — guard SDK + user, simulate a request (replace with real SDK call)
 	const fetchScoreAndStats = async () => {
-		if (!isSDKLoaded || !currentUser?.fid) {
-			alert("User not authenticated yet");
-			return;
-		}
+		// if (!isSDKLoaded || !currentUser?.fid) {
+		// 	alert("User not authenticated yet");
+		// 	return;
+		// }
+	
 
 		startTransition(async () => {
-			const result = await fetchNeynarScoreAndStat(currentUser.fid);
+			const result = await fetchNeynarScoreAndStat();
 
 			if (result.success && result.score && result.stats) {
 				setScore(result.score);
@@ -58,13 +60,15 @@ export default function Home() {
 				setStats(null);
 			}
 		});
+
+	
 	};
 
-	console.log("Context:", context);
+	
 
 	return (
 		<main className="flex min-h-screen flex-col mx-auto max-w-4xl font-medo w-full ">
-			<nav className="py-4 flex justify-between my-3 px-4 mx-4 bg-[#0052FF] outline outline-zinc-300">
+			<nav className="py-4 flex justify-between my-3 px-4 mx-4 bg-[#0052FF] outline outline-[#D6EB67]">
 				<div>
 					<h4 className="text-2xl font-block ">CHECKER</h4>
 				</div>
@@ -93,42 +97,49 @@ export default function Home() {
 				</div>
 			</nav>
 
-			<div className="mx-4 w-full flex flex-col justify-center items-center overflow-hidden">
-				<p className="text-xl font-semibold font-medo flex flex-wrap leading-4.8">
-					The neynar user score reveals the quality of a user&apos;s engagement
-					on the platform. it ranges from 0 - 1.
+			<div className="py-4 flex flex-col justify-between my-3  mx-4   outline-zinc-300">
+				<p className="text-xl font-semibold font-medo flex flex-wrap mb-8 leading-4.8">
+					neynar score is a quality metric (0-1) that reflects user behavior on
+					Farcaster. It&apos;s updated weekly and helps identify high-quality
+					accounts. It&apos;s not proof of humanity but measures account value
+					to the network.
 				</p>
 
-                {stats && (
-                    <div className="mt-4 text-center">
-                        <p>{stats.followersCount}</p>
-                    </div>
-                )}
-
 				{error && (
-					<p
-						className="mt-2 text-lg bg-red-200 text-red-400 p-4 w-fit text-center"
-						role="alert">
-						{error}
-					</p>
+					<div className="w-full flex justify-center">
+						<p
+							className=" text-lg bg-red-200 text-red-400 justify-center flex  p-4 w-fit text-center"
+							role="alert">
+							{error}
+							<span>
+								<AlertCircle />
+							</span>
+						</p>
+					</div>
+				)}
+			</div>
+
+			{/* show fetched values so linter won't complain they are unused */}
+			<div className="mx-4">
+				{stats && (
+					<div className="text-lg font-extrabold">
+						<p>Score: {score ?? "-"}</p>
+						<ul className="whitespace-pre-wrap">
+							<li>user: {stats?.username}</li>
+							<li>followers: {stats?.followersCount}</li>
+							<li>following: {stats?.followingCount}</li>
+						</ul>
+					</div>
 				)}
 			</div>
 
 			<div className="flex justify-center my-10">
 				<button
 					onClick={fetchScoreAndStats}
-					disabled={isLoading || loading}
+					disabled={isLoading || isPending}
 					className="text-lg font-pixel bg-[#D6EB67] text-zinc-700 px-5 py-3 w-2/3 disabled:opacity-50">
-					{isLoading || loading ? "Loading…" : "START HERE"}
+					{isLoading || isPending ? "Loading…" : "START HERE"}
 				</button>
-			</div>
-
-			{/* show fetched values so linter won't complain they are unused */}
-			<div className="mx-4">
-				<p>Score: {score ?? "-"}</p>
-				<pre className="whitespace-pre-wrap">
-					{JSON.stringify(stats ?? {}, null, 2)}
-				</pre>
 			</div>
 		</main>
 	);
