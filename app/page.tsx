@@ -49,10 +49,10 @@ export default function Home() {
 	}, [isSDKLoaded, actions]);
 
 	const fetchScoreAndStats = async () => {
-		// if (!isSDKLoaded || !currentUser?.fid) {
-		// 	alert("User not authenticated yet");
-		// 	return;
-		// }
+		if (!isSDKLoaded || !currentUser?.fid) {
+			alert("User not authenticated yet");
+			return;
+		}
 
 		startTransition(async () => {
 			const result = await fetchNeynarScoreAndStat(currentUser?.fid || 0);
