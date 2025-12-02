@@ -11,6 +11,7 @@ import {
 	Hourglass,
 	MousePointer,
 	Pointer,
+	Search,
 	Touchpad,
 } from "lucide-react";
 
@@ -108,9 +109,20 @@ export default function Home() {
 
 	return (
 		<main className="flex h-screen flex-col mx-auto max-w-4xl font-medo w-full ">
-			<nav className="py-4 flex justify-between my-3 px-4 mx-4 bg-[#0052FF] outline outline-[#D6EB67]">
+			<nav className="py-4 flex justify-between my-3 px-4 mx-4 bg-[#0052FF] outline outline-[#D6EB67] gap-4">
 				<div>
 					<h4 className="text-2xl font-block ">CHECKER</h4>
+				</div>
+
+				<div className="flex items-center bg-amber-50 px-2 py-2 rounded-full w-full justify-between pl-4">
+					<input
+						type="text"
+						placeholder="Search by name"
+						className="bg-transparent outline-none text-black text-[19px]"
+					/>
+					<button>
+						<Search color="white" className="bg-[#0052FF] h-8 w-8 p-1 rounded-full" />
+					</button>
 				</div>
 
 				{/* USER META DATA */}
@@ -119,7 +131,6 @@ export default function Home() {
 						<img
 							src={currentUser.pfpUrl}
 							alt="avatar"
-							
 							className="rounded-full h-6 w-6 object-cover"
 						/>
 					) : (
@@ -137,8 +148,8 @@ export default function Home() {
 			</nav>
 
 			<div className="py-4 flex flex-col justify-between my-3  mx-4   outline-zinc-300">
-				<p className="text-xl font-semibold font-medo flex flex-wrap mb-8 leading-4.8">
-					neynar score is a quality metric (0-1) that reflects user behavior on
+				<p className="text-xl font-semibold font-medo flex flex-wrap mb-8 leading-4.8 p-4 bg-white text-[#0052FF]">
+					Neynar score is a quality metric (0-1) that reflects user behavior on
 					Farcaster. It&apos;s updated weekly and helps identify high-quality
 					accounts. It&apos;s not proof of humanity but measures account value
 					to the network.
@@ -175,7 +186,7 @@ export default function Home() {
 				</div>
 			)}
 
-			<div className="flex justify-center my-10">
+			<div className="flex justify-center my-4 mt-auto ">
 				<button
 					onClick={fetchScoreAndStats}
 					disabled={isLoading || isPending}

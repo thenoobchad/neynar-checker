@@ -75,10 +75,13 @@ export default function RootLayout({
 				style={{
 					backgroundImage: "url('/background.png')",
 					backgroundSize: "cover",
-					backgroundPosition: "center",
+					backgroundPosition: "center"
 				}}
-				className={`antialiased min-h-screen ${BlockBlue.variable} ${BoldPixels.variable} ${MedoReg.variable} ${Space} ${Qartige.variable} bg-zinc-950 text-zinc-200`}>
-				<Provider>{children}</Provider>
+
+				className={`antialiased h-screen ${BlockBlue.variable} ${BoldPixels.variable} ${MedoReg.variable} ${Space} ${Qartige.variable} bg-zinc-950 text-zinc-200`}>
+				<Provider>
+					{children}
+				</Provider>
 			</body>
 		</html>
 	);
