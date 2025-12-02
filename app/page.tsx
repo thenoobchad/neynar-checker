@@ -4,12 +4,22 @@ import Image from "next/image"; // if you're using Next.js - remove if not
 import { useMiniApp } from "@neynar/react";
 import { useEffect, useState, useTransition } from "react";
 import { fetchNeynarScoreAndStat } from "@/lib/actions";
-import { AlertCircle } from "lucide-react";
+import {
+	AlertCircle,
+	CurlyBraces,
+	Fingerprint,
+	Hourglass,
+	MousePointer,
+	Pointer,
+	Touchpad,
+} from "lucide-react";
 
 interface StateType {
 	username: string;
 	followingCount: number;
 	followersCount: number;
+	status: string;
+	pfp: string;
 }
 
 export default function Home() {
@@ -38,36 +48,66 @@ export default function Home() {
 		actions?.ready();
 	}, [isSDKLoaded, actions]);
 
-	
-	// example fetch function — guard SDK + user, simulate a request (replace with real SDK call)
 	const fetchScoreAndStats = async () => {
 		// if (!isSDKLoaded || !currentUser?.fid) {
 		// 	alert("User not authenticated yet");
 		// 	return;
 		// }
-	
 
 		startTransition(async () => {
-			const result = await fetchNeynarScoreAndStat();
+			const result = await fetchNeynarScoreAndStat(currentUser?.fid || 0);
 
-			if (result.success && result.score && result.stats) {
+			// helper: convert SDK "UserProfileBio" (object) into a plain string safely
+			const normalizeStatus = (s: unknown): string => {
+				if (!s) return "";
+				if (typeof s === "string") return s;
+				// common SDK shape: { text: string } or { content: string } — adapt if needed
+				if (typeof s === "object" && s !== null) {
+					// try common fields then fallback to JSON
+					const asRecord = s as Record<string, unknown>;
+					const candidate = asRecord.text ?? asRecord.content ?? asRecord.value;
+					if (typeof candidate === "string") return candidate;
+					// if object has a meaningful toString implementation, use it
+					const maybeToString = (asRecord as { toString?: () => string }).toString;
+					if (typeof maybeToString === "function") {
+						try {
+							const str = maybeToString.call(asRecord);
+							if (str && str !== "[object Object]") return str;
+						} catch {}
+					}
+					return JSON.stringify(asRecord);
+				}
+				return String(s);
+			};
+
+			if (
+				result.success &&
+				result.score &&
+				result.stats &&
+				result.stats.username
+			) {
+				const safeStats = {
+					username: result.stats.username,
+					followingCount: result.stats.followingCount,
+					followersCount: result.stats.followersCount,
+					// normalize the SDK bio -> string to satisfy StateType.status
+					status: normalizeStatus(result.stats.status),
+					pfp: result.stats.pfp,
+				} as StateType;
+
 				setScore(result.score);
-				setStats(result.stats);
+				setStats(safeStats);
 				setIsError(null);
 			} else {
-				setIsError(result.error!);
+				setIsError(result.error ?? "Unknown error");
 				setScore(null);
 				setStats(null);
 			}
 		});
-
-	
 	};
 
-	
-
 	return (
-		<main className="flex min-h-screen flex-col mx-auto max-w-4xl font-medo w-full ">
+		<main className="flex h-screen flex-col mx-auto max-w-4xl font-medo w-full ">
 			<nav className="py-4 flex justify-between my-3 px-4 mx-4 bg-[#0052FF] outline outline-[#D6EB67]">
 				<div>
 					<h4 className="text-2xl font-block ">CHECKER</h4>
@@ -105,10 +145,10 @@ export default function Home() {
 					to the network.
 				</p>
 
-				{error && (
-					<div className="w-full flex justify-center">
+				{!error && (
+					<div className="w-full flex justify-center ">
 						<p
-							className=" text-lg bg-red-200 text-red-400 justify-center flex  p-4 w-fit text-center"
+							className=" text-lg bg-red-200 text-red-400 justify-center flex  p-4 w-fit text-center gap-2 items-center"
 							role="alert">
 							{error}
 							<span>
@@ -119,16 +159,19 @@ export default function Home() {
 				)}
 			</div>
 
-			{/* show fetched values so linter won't complain they are unused */}
-			<div className="mx-4">
+			<div className="mx-4 flex flex-col items-center justify-center mb-6 bg-white py-4 outline outline-zinc-300 text-black/70">
 				{stats && (
-					<div className="text-lg font-extrabold">
-						<p>Score: {score ?? "-"}</p>
-						<ul className="whitespace-pre-wrap">
-							<li>user: {stats?.username}</li>
-							<li>followers: {stats?.followersCount}</li>
-							<li>following: {stats?.followingCount}</li>
-						</ul>
+					<div className="text-xl font-extrabold flex gap-4 items-center">
+						<img src={stats.pfp} alt="pfp" className="h-33 w-33 rounded-full" />
+						<div>
+							<p className="text-2xl animate-pulse">Score: {score}</p>
+							<ul className="whitespace-pre-wrap">
+								<li>user: {stats?.username}</li>
+								<li>followers: {stats?.followersCount}</li>
+								<li>following: {stats?.followingCount}</li>
+								<li>{stats.status}</li>
+							</ul>
+						</div>
 					</div>
 				)}
 			</div>
@@ -137,8 +180,9 @@ export default function Home() {
 				<button
 					onClick={fetchScoreAndStats}
 					disabled={isLoading || isPending}
-					className="text-lg font-pixel bg-[#D6EB67] text-zinc-700 px-5 py-3 w-2/3 disabled:opacity-50">
-					{isLoading || isPending ? "Loading…" : "START HERE"}
+					className="text-lg font-pixel bg-[#D6EB67] text-zinc-700 px-5 py-3 w-2/3 disabled:opacity-50 flex justify-center items-center gap-3">
+					{isLoading || isPending ? "LOADING…" : `CHECK SCORE`}
+					{!isPending ? <Pointer /> : <Hourglass />}
 				</button>
 			</div>
 		</main>

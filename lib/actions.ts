@@ -7,13 +7,13 @@ const neynarClient = new NeynarAPIClient({
     apiKey: process.env.NEYNAR_API_KEY!,
 })
 
-export async function fetchNeynarScoreAndStat() {
-    // if (!fid) {
-    //     throw new Error("Fid is required")
-    // }
+export async function fetchNeynarScoreAndStat(fid: number) {
+    if (!fid) {
+        throw new Error("Fid is required")
+    }
 
     try {
-        const userData = await neynarClient.fetchBulkUsers({ fids: [1120583] })
+        const userData = await neynarClient.fetchBulkUsers({ fids: [fid] })
         const user = userData.users[0]
         console.log("This is the",user.profile)
         if(!user) {
@@ -30,7 +30,8 @@ export async function fetchNeynarScoreAndStat() {
                 username: user.username,
                 followingCount: user.following_count,
                 followersCount: user.follower_count,
-             
+                status: user.profile.bio,
+                pfp: user.pfp_url,
             },
         }
     } catch (error) {
