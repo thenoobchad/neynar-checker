@@ -110,9 +110,7 @@ export default function Home() {
 	return (
 		<main className="flex h-screen flex-col mx-auto max-w-4xl font-medo w-full ">
 			<nav className="py-4 flex justify-between my-3 px-4 mx-4 bg-[#0052FF] outline outline-[#D6EB67] gap-4">
-				<div>
-					<h4 className="text-2xl font-block ">CHECKER</h4>
-				</div>
+				
 
 				<div className="flex items-center bg-amber-50 px-2 py-2 rounded-full w-full justify-between pl-4">
 					<input
