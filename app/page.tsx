@@ -115,7 +115,7 @@ export default function Home() {
 				<div className="flex items-center bg-amber-50 px-2 py-2 rounded-full w-full justify-between pl-4">
 					<input
 						type="text"
-						placeholder="Search by name"
+						placeholder="Search by name..."
 						className="bg-transparent outline-none text-black text-[19px]"
 					/>
 					<button>
@@ -129,16 +129,16 @@ export default function Home() {
 						<img
 							src={currentUser.pfpUrl}
 							alt="avatar"
-							className="rounded-full h-6 w-6 object-cover"
+							className="rounded-full h-9 w-9 object-cover"
 						/>
 					) : (
 						<div className="h-9 w-9 rounded-full bg-white" />
 					)}
 					<div className="flex flex-col items-start justify-center">
-						<h4 className="font-extrabold text-2xl leading-6">
+						<h4 className="font-extrabold text-2xl leading-6 whitespace-nowrap">
 							{currentUser?.displayName ?? currentUser?.username ?? "Unknown"}
 						</h4>
-						<p className="text-md text-zinc-300 leading-3.5 font-semibold">
+						<p className="text-md text-zinc-300 leading-3.5 font-semibold whitespace-nowrap">
 							fid: {currentUser?.fid ?? "-"}
 						</p>
 					</div>
@@ -146,7 +146,7 @@ export default function Home() {
 			</nav>
 
 			<div className="py-4 flex flex-col justify-between my-3  mx-4   outline-zinc-300">
-				<p className="text-xl font-semibold font-medo flex flex-wrap mb-8 leading-4.8 p-4 bg-white text-[#0052FF]">
+				<p className="text-xl font-semibold font-medo flex flex-wrap mb-8 leading-4.8 p-4 bg-white/90 text-[#0052FF]">
 					Neynar score is a quality metric (0-1) that reflects user behavior on
 					Farcaster. It&apos;s updated weekly and helps identify high-quality
 					accounts. It&apos;s not proof of humanity but measures account value
@@ -168,7 +168,7 @@ export default function Home() {
 			</div>
 
 			{stats && (
-				<div className="mx-4 flex flex-col items-center justify-center mb-6 bg-white py-4 outline outline-zinc-300 text-black/70">
+				<div className="mx-4 flex flex-col items-center justify-center mb-6 bg-white/90 py-4 outline outline-zinc-300 text-black/70 px-2">
 					<div className="text-xl font-extrabold flex gap-4 items-center">
 						<img src={stats.pfp} alt="pfp" className="h-33 w-33 rounded-full" />
 						<div>
