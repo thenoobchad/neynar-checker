@@ -13,7 +13,9 @@
 		"heroImageUrl":"https://neynar-checker.vercel.app/preview-image.png",
 		"ogTitle":"neynar checker",
 		"ogDescription":"Minimalistic checker for neynar score",
-		"ogImageUrl":"https://neynar-checker.vercel.app/preview-image.png"
+		"ogImageUrl":"https://neynar-checker.vercel.app/preview-image.png",
+		"buttonTitle":"Start Checker",
+		"castShareUrl":"https://farcaster.xyz/miniapps/neynar-checker"
 	},
 	"accountAssociation": {
     "header": "eyJmaWQiOjExMTAzODEsInR5cGUiOiJjdXN0b2R5Iiwia2V5IjoiMHgwMTU5ZkRkQUVmRDEzMzcxMEI0Y2M5RjRiRTYwYzlDQ2JDMmE1NDQxIn0",
