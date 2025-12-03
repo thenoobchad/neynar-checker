@@ -112,7 +112,7 @@ export default function Home() {
 			<nav className="py-4 flex justify-between my-3 px-4 mx-4 bg-[#0052FF] outline outline-[#D6EB67] gap-4">
 				
 
-				<div className="flex items-center bg-amber-50 px-2 py-2 rounded-full w-full justify-between pl-4">
+				<div className="flex items-center bg-amber-50 px-2 py-2 rounded-full w-2/3 justify-between pl-4">
 					<input
 						type="text"
 						placeholder="Search by name..."
