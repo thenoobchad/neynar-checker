@@ -1,47 +1,61 @@
-"use server"
+"use server";
 
-import { NeynarAPIClient } from "@neynar/nodejs-sdk"
-import { revalidatePath } from "next/cache"
+import { NeynarAPIClient } from "@neynar/nodejs-sdk";
+import { revalidatePath } from "next/cache";
 
 const neynarClient = new NeynarAPIClient({
-    apiKey: process.env.NEYNAR_API_KEY!,
-})
+	apiKey: process.env.NEYNAR_API_KEY!,
+});
 
 export async function fetchNeynarScoreAndStat(fid: number) {
-    if (!fid) {
-        throw new Error("Fid is required")
-    }
+	if (!fid) {
+		throw new Error("Fid is required");
+	}
 
-    try {
-        const userData = await neynarClient.fetchBulkUsers({ fids: [fid] })
-        const user = userData.users[0]
-        console.log("This is the",user.profile)
-        if(!user) {
-            throw new Error("User not found")
-        }
+	try {
+		const userData = await neynarClient.fetchBulkUsers({ fids: [fid] });
+		const user = userData.users[0];
+		console.log("This is the", user.profile);
+		if (!user) {
+			throw new Error("User not found");
+		}
 
-        const scoreData = { score: user.score }
+		const scoreData = { score: user.score };
 
+		return {
+			success: true,
+			score: scoreData.score,
+			stats: {
+				username: user.username,
+				followingCount: user.following_count,
+				followersCount: user.follower_count,
+				status: user.profile.bio,
+				pfp: user.pfp_url,
+			},
+		};
+	} catch (error) {
+		console.error("Error fetching Neynar score and stats:", error);
+		return {
+			success: false,
+			error: "Failes to fetch data from neynar",
+		};
+	} finally {
+		// Revalidate the path to update the UI
+		revalidatePath("/");
+	}
+}
 
+export async function fetchUsersByUsername(username: string) {
+	try {
+		const q = username;
+		const limit = 10;
+
+		const data = await neynarClient.searchUser({ q, limit });
         return {
             success: true,
-            score: scoreData.score,
-            stats: {
-                username: user.username,
-                followingCount: user.following_count,
-                followersCount: user.follower_count,
-                status: user.profile.bio,
-                pfp: user.pfp_url,
-            },
+            data: data.result.users
         }
-    } catch (error) {
-        console.error("Error fetching Neynar score and stats:", error)
-        return {
-            success: false,
-            error:'Failes to fetch data from neynar'
-        }
-    } finally {
-        // Revalidate the path to update the UI
-        revalidatePath("/")
-    }
+	} catch (err) {
+		console.error("Error fetching users:", err);
+	}
 }
