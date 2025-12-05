@@ -1,7 +1,8 @@
 "use server";
 
-import { NeynarAPIClient } from "@neynar/nodejs-sdk";
+import { NeynarAPIClient, Configuration } from "@neynar/nodejs-sdk";
 import { revalidatePath } from "next/cache";
+
 
 const neynarClient = new NeynarAPIClient({
 	apiKey: process.env.NEYNAR_API_KEY!,
@@ -45,17 +46,4 @@ export async function fetchNeynarScoreAndStat(fid: number) {
 	}
 }
 
-export async function fetchUsersByUsername(username: string) {
-	try {
-		const q = username;
-		const limit = 10;
 
-		const data = await neynarClient.searchUser({ q, limit });
-        return {
-            success: true,
-            data: data.result.users
-        }
-	} catch (err) {
-		console.error("Error fetching users:", err);
-	}
-}

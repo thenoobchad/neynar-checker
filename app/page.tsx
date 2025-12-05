@@ -1,8 +1,8 @@
 "use client";
-import { NeynarAPIClient, Configuration } from "@neynar/nodejs-sdk";
+
 import { useMiniApp } from "@neynar/react";
 import { useEffect, useState, useTransition } from "react";
-import { fetchNeynarScoreAndStat, fetchUsersByUsername } from "@/lib/actions";
+import { fetchNeynarScoreAndStat } from "@/lib/actions";
 import { AlertCircle, Hourglass, Pointer, Search } from "lucide-react";
 
 interface StateType {
@@ -18,10 +18,10 @@ type User = {
 };
 
 export default function Home() {
-	// single source of truth from the SDK hook
+	
 	const { isSDKLoaded, actions, context } = useMiniApp();
 
-	// local UI state (used in the JSX to avoid 'declared but never used' warnings)
+	
 	const [query, setQuery] = useState("");
 	const [users, setUsers] = useState<User[] | null>([]);
 	const [score, setScore] = useState<number | null>(null);
@@ -111,54 +111,11 @@ export default function Home() {
 	
 	
 
-	useEffect(() => {
-		const fetchUsers = async () => {
-			const res = await fetchUsersByUsername(query);
-
-			if (res?.success) {
-				setUsers(res.data);
-			}
-		};
-
-		if (query.length > 0) fetchUsers();
-	}, [query]);
-
 	return (
 		<main className="flex h-screen flex-col mx-auto max-w-4xl font-medo w-full ">
 			<nav className="py-4 flex justify-between my-3 px-4 mx-4 bg-[#0052FF] outline outline-[#D6EB67] gap-4">
-				<form
-					
-					className="flex items-center bg-amber-50 px-2 py-2 rounded-full w-2/3 justify-between pl-4 relative">
-					<input
-						value={query}
-						onChange={(e) => setQuery(e.target.value)}
-						type="text"
-						placeholder="Search by name..."
-						className="bg-transparent outline-none text-black text-[19px]"
-					/>
-					{users && users.length > 0 && (
-						<div className="bg-white absolute w-3/4 top-13 rounded  text-zinc-800 p-2">
-							<span className="text-zinc-500">Search results...</span>
-							<ul>
-								{users.map((user, i) => (
-									<li
-										key={user.fid}
-										className="text-lg hover:bg-blue-200 p-1"
-										>
-										{user.username}
-									</li>
-								))}
-							</ul>
-						</div>
-					)}
-
-					<button>
-						<Search
-							color="white"
-							className="bg-[#0052FF] h-8 w-8 p-1 rounded-full"
-						/>
-					</button>
-				</form>
+				
+				<h4 className="text-3xl font-bold">CHECKER</h4>
 
 				{/* USER META DATA */}
 				<div className="flex gap-3 items-center justify-center">
